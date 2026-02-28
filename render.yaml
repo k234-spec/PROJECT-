@@ -2,6 +2,7 @@ services:
   - type: web
     name: portfolio-saas-api
     env: node
+    rootDir: server
     region: singapore
     plan: free
     buildCommand: npm install
