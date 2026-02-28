@@ -15,7 +15,5 @@ services:
         generateValue: true
       - key: CORS_ORIGINS
         value: https://your-frontend.vercel.app,https://your-frontend.netlify.app
-    disk:
-      name: sqlite-data
-      mountPath: /opt/render/project/src/server/data
-      sizeGB: 1
+      - key: MONGODB_URI
+        value: mongodb+srv://kunalmangla447_db_user:A1DyHT53zxNiBRtA@cluster0.mongodb.net/portfolio?retryWrites=true&w=majority
