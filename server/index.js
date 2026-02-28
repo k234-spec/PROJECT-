@@ -11,7 +11,7 @@ const allowedOrigins = (process.env.CORS_ORIGINS || 'http://localhost:5173,http:
 
 app.use(cors({
   origin: (origin, cb) => {
-    if (!origin || allowedOrigins.includes(origin)) cb(null, true);
+    if (!origin || allowedOrigins.includes('*') || allowedOrigins.includes(origin)) cb(null, true);
     else cb(new Error('Not allowed by CORS'));
   },
   credentials: true

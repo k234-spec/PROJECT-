@@ -15,6 +15,6 @@ services:
       - key: JWT_SECRET
         generateValue: true
       - key: CORS_ORIGINS
-        value: https://your-frontend.vercel.app,https://your-frontend.netlify.app
+        value: *,https://your-frontend.vercel.app,https://your-frontend.netlify.app
       - key: MONGODB_URI
         value: mongodb+srv://kunalmangla447_db_user:A1DyHT53zxNiBRtA@cluster0.mongodb.net/portfolio?retryWrites=true&w=majority
