@@ -9,13 +9,7 @@ const PORT = process.env.PORT || 4000;
 
 const allowedOrigins = (process.env.CORS_ORIGINS || 'http://localhost:5173,http://localhost:3000').split(',').map(s => s.trim());
 
-app.use(cors({
-  origin: (origin, cb) => {
-    if (!origin || allowedOrigins.includes('*') || allowedOrigins.includes(origin)) cb(null, true);
-    else cb(new Error('Not allowed by CORS'));
-  },
-  credentials: true
-}));
+app.use(cors({ origin: function(origin, cb) { cb(null, true); }, credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
@@ -74,3 +68,4 @@ connect().then(() => {
 });
 
 module.exports = app;
+
