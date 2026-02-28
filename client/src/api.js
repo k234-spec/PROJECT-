@@ -1,19 +1,22 @@
-import axios from 'axios'
+﻿import axios from 'axios'
 
-// In local dev, Vite proxies /api → http://localhost:4000/api (no CORS needed)
-// In production builds, set VITE_API_URL to your deployed backend URL
 const baseURL = import.meta.env.VITE_API_URL || '/api'
 
 const api = axios.create({ baseURL })
 
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token')
-  if (token) config.headers.Authorization = `Bearer ${token}`
+  if (token) config.headers.Authorization = "Bearer $token"
   return config
 })
 
 api.interceptors.response.use(
-  (res) => res,
+  (res) => {
+    if (typeof res.data === 'string' && res.data.trim().startsWith('<!DOCTYPE html>')) {
+      return Promise.reject(new Error('API returned HTML.'))
+    }
+    return res
+  },
   (err) => {
     if (err.response?.status === 401) {
       localStorage.removeItem('token')
