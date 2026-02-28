@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: portfolio-saas-api
+    env: node
+    region: singapore
+    plan: free
+    buildCommand: npm install
+    startCommand: node index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 4000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGINS
+        value: https://your-frontend.vercel.app,https://your-frontend.netlify.app
+    disk:
+      name: sqlite-data
+      mountPath: /opt/render/project/src/server/data
+      sizeGB: 1

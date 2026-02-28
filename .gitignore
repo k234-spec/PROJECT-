@@ -1,0 +1,6 @@
+﻿node_modules/
+.env
+dist/
+test_out.txt
+test_output.txt
+.DS_Store
