@@ -92,7 +92,7 @@ router.post('/', authMiddleware, async (req, res) => {
     const { title, description, category, tags, cover_image, live_url, github_url, tech_stack, status, open_for_collaboration } = req.body;
     if (!title) return res.status(400).json({ error: 'Title is required' });
 
-    const p = await Project.create({ user_id: req.user.id, title, description, category: category || 'Web', tags, cover_image, live_url, github_url, tech_stack, status: status || 'published' });
+    const p = await Project.create({ user_id: req.user.id, title, description, category: category, open_for_collaboration: open_for_collaboration || false });
     res.status(201).json(fmt(p));
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -158,3 +158,4 @@ router.post('/:id/testimonials', async (req, res) => {
 });
 
 module.exports = router;
+
